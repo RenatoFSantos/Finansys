@@ -50,13 +50,14 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/toastr/build/toastr.min.css",
+              "node_modules/toastr/toastr.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/toastr/toastr.js",
               "node_modules/chart.js/dist/Chart.bundle.js"
             ]
           },

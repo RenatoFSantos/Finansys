@@ -5,7 +5,7 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CategoryListComponent, CategoryFormComponent],
@@ -13,7 +13,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     CategoriesRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class CategoriesModule { }

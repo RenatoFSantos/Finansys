@@ -2,14 +2,14 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
     <li class="breadcrumb-item"><a routerLink="/categories">Categorias</a></li>
-    <li class="breadcrumb-item active">Manutenção</li>
+    <li class="breadcrumb-item active">{{pageTitle}}</li>
   </ol>
 </nav>
 
 <div class="row">
   <div class="col-md">
     <h1 class="h2 border-left pl-2">
-      Manutenção Categoria
+        {{pageTitle}}
     </h1>
   </div>
   <div class="col-md">
@@ -17,23 +17,28 @@
   </div>
 </div>
 
-<form>
+<form [formGroup]="categoryForm" (ngSubmit)="submitForm()">
   <div class="card">
     <div class="card-header">
-      Informações sobre a Categoria
+      Informações sobre a Categoria ({{this.currentAction}})
     </div>
     <div class="card-body">
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
-          <input type="text" class="form-control" id="name"/>
+          <input type="text" class="form-control" id="name" formControlName="name"/>
+          <div class="text-danger" *ngIf="categoryForm.get('name').invalid && categoryForm.get('name').touched">
+            <div *ngIf="categoryForm.get('name').getError('required')">Nome obrigatório</div>
+            <div *ngIf="categoryForm.get('name').getError('minlength')">Nome deve ter no mínimo 2 caracteres</div>
+          </div>
         </div>
+
         <div class="form-group col-md-8">
             <label for="description">Descrição</label>
-            <input type="text" class="form-control" id="description"/>
+            <input type="text" class="form-control" id="description" formControlName="description"/>
         </div>
       </div>
     </div>
   </div>
-  <button class="btn btn-primary btn-lg mt-3 float-right">Salvar</button>
+  <button [disabled]="submittingForm || categoryForm.invalid" type="submit" class="btn btn-primary btn-lg mt-3 float-right">Salvar</button>
 </form>

@@ -1,3 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
+
+
+.breadcrumb {
+  margin-top: 80px;
+}
+
+.toast {
+  opacity: 1;
+}
+
+#toast-container > div {
+  opacity: 1;
+}
+
+.toast-success {
+  opacity: 1 !important;
+  background-color: #51a351 !important;
+}
+
+.toast-info {
+  opacity: 1 !important;
+  background-color: #2f96b4 !important;
+}
+
+.toast-error {
+  opacity: 1 !important;
+  background-color: #bd362f !important;
+}
+
+.toast-warning {
+  opacity: 1 !important;
+  background-color: #f89406 !important;
+}
+

@@ -31,7 +31,7 @@ export class CategoryService {
   }
 
   create(categoria: Category): Observable<Category> {
-    return this.http.post(`${this.apiPath}/new`, categoria)
+    return this.http.post(`${this.apiPath}`, categoria)
     .pipe(
       catchError(err => this.errorHandler(err)),
       map(res => res)
@@ -39,7 +39,7 @@ export class CategoryService {
   }
 
   update(categoria: Category): Observable<Category> {
-    return this.http.put(`${this.apiPath}/${categoria.id}/edit`, categoria)
+    return this.http.put(`${this.apiPath}/${categoria.id}`, categoria)
     .pipe(
       catchError(err => this.errorHandler(err)),
       map(() => categoria)

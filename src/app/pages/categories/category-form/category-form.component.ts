@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from './../../../models/category.model';
 import { CategoryService } from './../category.service';
 
-import toastr from 'toastr';
 import { switchMap } from 'rxjs/operators';
+import toastr from 'toastr';
 
 @Component({
   selector: 'app-category-form',
@@ -15,7 +15,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
-  currentAction: string;
+  currentAction: string = '';
   categoryForm: FormGroup;
   pageTitle: string;
   serverErrorMessage: string[] = null;
@@ -37,6 +37,15 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     this.setPageTitle();
+  }
+
+  submitForm() {
+    this.submittingForm = true;
+    if (this.currentAction === 'new' ) {
+      this.createCategory();
+    } else {
+      this.updateCategory();
+    }
   }
 
   // Métodos PRIVADOS
@@ -79,4 +88,62 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.pageTitle = 'Editando Categoria: ' + categoryName;
     }
   }
+
+  private createCategory() {
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.create(category)
+      .subscribe(
+        categoria => this.actionsForSuccess(categoria),
+        error => this.actionsForError(error)
+      );
+  }
+
+  private updateCategory() {
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.update(category)
+      .subscribe(
+        categoria => this.actionsForSuccess(categoria),
+        error => this.actionsForError(error)
+      );
+  }
+
+  private actionsForSuccess(category: Category) {
+    // toastr.options = {
+    //   closeButton: true,
+    //   debug: false,
+    //   newestOnTop: false,
+    //   progressBar: false,
+    //   positionClass: 'toast-top-right',
+    //   preventDuplicates: false,
+    //   onclick: null,
+    //   showDuration: 300,
+    //   hideDuration: 1000,
+    //   timeOut: 0,
+    //   extendedTimeOut: 0,
+    //   showEasing: 'swing',
+    //   hideEasing: 'linear',
+    //   showMethod: 'fadeIn',
+    //   hideMethod: 'fadeOut',
+    //   tapToDismiss: false
+    // };
+
+    toastr.success('Mensagem', 'Registro salvo com sucesso!');
+
+    this.router.navigateByUrl('categories', {skipLocationChange: true}).then(
+      () => this.router.navigate(['categories', category.id, 'edit'])
+    );
+  }
+
+  private actionsForError(erro) {
+    toastr.error('Ocorreu um erro ao processar sua solicitação!');
+
+    this.submittingForm = false;
+
+    if (erro.status === 422) {
+      this.serverErrorMessage = JSON.parse(erro._body).errors;
+    } else {
+      this.serverErrorMessage = ['Falha na comunicação com o servidor. Tente mais tarde!'];
+    }
+  }
+
 }
