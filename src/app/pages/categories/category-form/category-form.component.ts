@@ -129,9 +129,11 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
     toastr.success('Mensagem', 'Registro salvo com sucesso!');
 
-    this.router.navigateByUrl('categories', {skipLocationChange: true}).then(
-      () => this.router.navigate(['categories', category.id, 'edit'])
-    );
+    // this.router.navigateByUrl('categories', {skipLocationChange: true}).then(
+    //   () => this.router.navigate(['categories', category.id, 'edit'])
+    // );
+    this.submittingForm = false;
+    this.router.navigate(['categories', category.id, 'edit']);
   }
 
   private actionsForError(erro) {

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Saúde",
-      "description": "Plano de Saúde e remédios 2"
+      "description": "Plano de Saúde e remédios"
     },
     {
       "id": 2,
@@ -12,7 +12,7 @@
     },
     {
       "id": 3,
-      "name": "Lazer",
+      "name": "Lazer 2",
       "description": "Cinema, viagens, fins de semana"
     },
     {
@@ -169,6 +169,16 @@
       "id": 37,
       "name": "sdfsfsdf",
       "description": "sdfsdfsdf"
+    },
+    {
+      "id": 38,
+      "name": "asasdasd",
+      "description": "asdasdasd"
+    },
+    {
+      "id": 39,
+      "name": "asdasdadasdasdad",
+      "description": "asdasdasd"
     }
   ]
 }
